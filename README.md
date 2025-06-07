@@ -22,6 +22,12 @@ Credit risk prediction is crucial for financial institutions to assess the likel
 
 ---
 
+## 📊 Data
+
+The model utilizes `foia-7afy2010-fy2019-asof-221231.csv` as its input dataset. This dataset is not included in the repository and needs to be acquired separately. It can be obtained from a public FOIA request. [Link to data source or description if available]
+
+---
+
 ## 🗂 Repository Structure
 
 | Path | Description |
@@ -68,11 +74,24 @@ Credit risk prediction is crucial for financial institutions to assess the likel
 ## 🤖 Model Details
 - **Notebook highlights:**
   - Data preprocessing: handling missing values, encoding categorical variables, feature scaling.
+  - Utilizes `TargetEncoder` for handling high-cardinality categorical features and `SelectKBest` for feature selection.
+  - Employs SHAP (SHapley Additive exPlanations) for model interpretability, providing insights into feature contributions.
+  - Evaluates model performance using various metrics, including classification reports and ROC AUC score, considering prediction thresholds such as 0.5 and 0.8.
   - Model training: includes model selection, hyperparameter tuning, and evaluation metrics (accuracy, ROC-AUC, etc.).
   - Model export: trained model is saved as `credit_risk_model_updated.pkl` for reuse.
 - **How to retrain:**
   - Update the notebook with new data and re-run all cells.
   - Save the new model as a `.pkl` file for deployment.
+
+---
+
+## 📤 Notebook Outputs
+
+The Jupyter notebook `Ml Model/PredictionModel.ipynb` generates the following key files:
+
+-   `risky_borrowers_threshold_0.7.csv`: A CSV file listing borrowers identified as high risk (based on an 0.8 probability threshold in the code), including their risk probability and top contributing factors from SHAP analysis.
+-   `total_risk_summary.csv`: A CSV file providing a summary of total loans, actual risky loans, and predicted risky loans at different thresholds.
+-   `shap_summary_2.png`: An image file containing the SHAP summary plot, visualizing global feature importance.
 
 ---
 
